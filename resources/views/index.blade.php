@@ -1,9 +1,9 @@
 <div class="">
 
-    {{--
     <x-home />
 
 
+    {{--
     <x-steeper title="¡Primero que todo! <br> Empecemos con la IA" />
     <x-calification title="¿Como te sientes frente a la respuesta de la IA?" /> --}}
     {{--
@@ -12,5 +12,6 @@
                 algo que no te haya gustado, etc.
                 <br><br>
                 <b>¡recuerda que no vamos almacenar esta información!</b>" /> --}}
-    <x-action title="Escucha y sientete mejor" type="youtube" />
+    {{--
+    <x-action title="Escucha y sientete mejor" type="video" /> --}}
 </div>

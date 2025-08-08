@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\RegisterEmotion;
 use App\Filament\Resources\RegisterResource\Pages;
 use App\Filament\Resources\RegisterResource\RelationManagers;
 use App\Models\Register;
@@ -9,6 +10,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ColorColumn;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -34,7 +38,13 @@ class RegisterResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('emotion')
+                    ->searchable(),
+                TextColumn::make('profesional.name')
+                    ->searchable(),
+                TextColumn::make('results.average_score')
             ])
             ->filters([
                 //

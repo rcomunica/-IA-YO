@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('foro_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('register_id')->constrained('registers')->cascadeOnDelete();
+            $table->unsignedBigInteger('register_id');
             $table->integer("foro_score");
             $table->integer("event_score");
             $table->timestamps();
+
+            $table->foreign('register_id')->on('registers')->references('id')->onDelete('cascade');
         });
     }
 

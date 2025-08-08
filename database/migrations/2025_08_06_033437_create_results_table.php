@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('register_id')->constrained('registers')->cascadeOnDelete();
+            $table->unsignedBigInteger('register_id')->unique();
             $table->integer("ia_score");
             $table->integer("music_score");
             $table->integer("profesional_score");
             $table->timestamps();
+
+            $table->foreign('register_id')->on('registers')->references('id')->onDelete('cascade');
         });
     }
 

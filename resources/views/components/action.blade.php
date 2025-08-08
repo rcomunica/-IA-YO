@@ -22,7 +22,7 @@
     @break
 
     @case('video')
-    {{-- --}}
+    <x-video source="fondo" />
     @break
 
     @default

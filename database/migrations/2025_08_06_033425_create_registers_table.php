@@ -16,20 +16,25 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->enum('emotion', [
-                'joy',
-                'sadness',
-                'fear',
-                'anger',
-                'anxiety',
-                'shame',
-                'guilt',
-                'love',
-                'envy',
-                'irritation',
+                'alegria',
+                'tristeza',
+                'miedo',
+                'enojo',
+                'ansiedad',
+                'verguenza',
+                'culpa',
+                'amor',
+                'envidia',
+                'irritacion',
             ]);
             $table->string("song");
-            $table->foreignId('profesional_id')->constrained('profesionals')->cascadeOnDelete();
+            $table->unsignedBigInteger('profesional_id');
             $table->timestamps();
+        });
+
+
+        Schema::table('registers', function (Blueprint $table) {
+            $table->foreign('profesional_id')->on('profesionals')->references('id')->onDelete('cascade');
         });
     }
 

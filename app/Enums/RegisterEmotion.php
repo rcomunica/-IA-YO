@@ -4,16 +4,16 @@ namespace App\Enums;
 
 enum RegisterEmotion: string
 {
-    case Joy = 'joy';
-    case Sadness = 'sadness';
-    case Fear = 'fear';
-    case Anger = 'anger';
-    case Anxiety = 'anxiety';
-    case Shame = 'shame';
-    case Guilt = 'guilt';
-    case Love = 'love';
-    case Envy = 'envy';
-    case Irritation = 'irritation';
+    case Joy = 'alegria';
+    case Sadness = 'tristeza';
+    case Fear = 'miedo';
+    case Anger = 'enojo';
+    case Anxiety = 'ansiedad';
+    case Shame = 'verguenza';
+    case Guilt = 'culpa';
+    case Love = 'amor';
+    case Envy = 'envidia';
+    case Irritation = 'irritacion';
 }
 
 /*
