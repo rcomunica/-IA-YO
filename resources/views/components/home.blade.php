@@ -1,6 +1,7 @@
-<div class="grid grid-rows-4 grid-cols-3 items-center justify-items-center w-full h-screen">
-    <div class=" col-start-2 row-start-2">
-        <h1 class="text-6xl text-center text-[#9658FA] font-extrabold">¡Descubre cómo y con quien te sientes más comodo!
+<div {{ $attributes->merge(['class' => 'grid grid-rows-4 grid-cols-3 items-center justify-items-center w-full
+    h-screen']) }}>
+    <div class="col-start-2 row-start-2">
+        <h1 class="text-5xl text-center text-[#9658FA] font-extrabold">¡Descubre cómo y con quien te sientes más comodo!
         </h1>
     </div>
     <div class="col-start-2 row-start-3">

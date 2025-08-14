@@ -1,4 +1,6 @@
-<div class="grid grid-rows-4 grid-cols-3 items-center justify-items-center w-full h-screen">
+<div {{$attributes->merge(['class' => 'grid grid-rows-4 grid-cols-3 items-center justify-items-center w-full
+    min-h-screen'])}}
+    class="">
     <div class="col-start-2 row-start-2">
         <h1 class="text-5xl text-center text-[#9658FA] font-extrabold">
             {!! $title !!}
@@ -61,5 +63,8 @@
                 class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
                 width="100" alt="">
         </div>
+    </div>
+    <div class="row-start-4 col-start-1 col-span-3">
+        <x-button>Siguiente</x-button>
     </div>
 </div>

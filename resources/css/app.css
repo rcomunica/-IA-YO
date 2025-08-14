@@ -70,6 +70,7 @@ select:focus[data-flux-control] {
     @apply size-4;
 } */
 
-* {
+body {
     font-family: "Montserrat", sans-serif;
+    overflow-x: hidden;
 }

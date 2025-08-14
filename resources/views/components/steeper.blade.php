@@ -2,7 +2,8 @@
 'title',
 ])
 
-<div class="grid grid-rows-4 grid-cols-3 items-center justify-items-center w-full h-screen">
+<div {{ $attributes->merge(['class' => 'grid grid-rows-4 grid-cols-3 items-center justify-items-center w-full
+    min-h-screen']) }}>
     <div class="col-span-3 col-start-1 row-start-2">
         <h1 class="text-6xl text-center text-[#9658FA] font-extrabold">
             {!! $title !!}

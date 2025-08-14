@@ -22,7 +22,7 @@ class EmotionRegisterChart extends ChartWidget
         return [
             'datasets' => [
                 [
-                    'label' => 'Emociones comunes',
+                    'label' => 'Emociones',
                     'data' => $data,
                     'backgroundColor' => [
                         '#FFCE56', // alegría
