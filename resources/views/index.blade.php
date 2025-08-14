@@ -1,4 +1,4 @@
-<div x-data="{ paso: 2 }">
+<div x-data="{ paso: 0 }">
 
     @env('local')
     <span>vista: <strong x-text="paso"></strong></span>
@@ -10,10 +10,10 @@
     <x-input title="¿Como te llamas?" x-show="paso === 1" wire:model.live="name"
         description="Te pedimos esta información para poder tener una mejor interaccion contigo durante el desarrollo de la actividad ^^" />
 
-    <x-action x-show="paso === 2" title="¿Cómo estás {{ $name ?? '' }}?" type="chat" description="¡Exprésate! siéntete libre de interactuar...<br>
+    <x-steeper x-show="paso === 2" title="¡Primero que todo! <br> Empecemos con la IA" />
+    <x-action x-show="paso === 3" title="¿Cómo estás {{ $name ?? '' }}?" type="chat" description="¡Exprésate! siéntete libre de interactuar...<br>
          explica como ha sido tu día, como va el foro, etc, etc, etc." />
 
-    <x-steeper x-show="paso === 3" title="¡Primero que todo! <br> Empecemos con la IA" />
 
     <template x-if="paso === 4">
         <x-calification title="¿Cómo te sientes frente a la respuesta de la IA?" />

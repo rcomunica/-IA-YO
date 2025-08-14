@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Enums\RegisterEmotion;
+use App\Models\Register;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use OpenAI;
 
@@ -11,12 +13,14 @@ class Home extends Component
 
     public $name, $prompt;
 
+    public $message, $songName, $emotion;
+
     public function render()
     {
         return view('index');
     }
 
-    public function responsePromt()
+    public function connectOpenAi()
     {
 
         $feelings = array_map(
@@ -58,12 +62,81 @@ class Home extends Component
             'temperature' => 0.7,
             'messages' => [
                 [
+                    'role' => 'developer',
+                    'content' => 'El usuario se llama' . $this->name . ' , lo saludarás, vas a decirle su sentimiento, razones por las cuales se siente así y que consejo le das, recuerda dar una respuesta muy completa, dile como puede afrontar su sentimiento sea bueno o malo',
+                ],
+                [
                     'role'      => 'user',
-                    'content'   => 'Hoy me siento triste, lastimosamente me dí cuenta que mi pareja me estaba siendo infiel'
+                    'content'   => $this->prompt,
                 ],
             ],
             'tools' => [$tools],
         ]);
-        dd($response->toArray());
+
+        $this->makeReponse($response);
+    }
+
+    public function makeReponse($response)
+    {
+        $toolCall = $response['choices'][0]['message']['tool_calls'][0];
+
+        $arguments = json_decode($toolCall['function']['arguments'], true);
+
+
+        // Almacenar resultados
+        $this->message = $arguments['mensaje'];
+        $this->songName = $arguments['cancion'];
+        $this->emotion = $arguments['sentimiento'];
+
+
+        // Registro DB
+        $register = new Register();
+
+        $register->name = $this->name;
+        $register->emotion = RegisterEmotion::tryFrom($this->emotion) ?? RegisterEmotion::Joy;
+        $register->email = "julir2772@gmail.com";
+        $register->song = $this->searchYoutubeVideo($this->songName); // function
+        $register->profesional_id = 1;
+
+        $register->save();
+
+
+        // Mostrar resultados
+
+
+    }
+
+    public function setAnswerIA($text)
+    {
+        //
+    }
+
+    public function searchYoutubeVideo($videoName)
+    {
+        $apiKey = env('GOOGLE_API');
+        $url = 'https://www.googleapis.com/youtube/v3/search';
+
+        $response = Http::get($url, [
+            'part' => 'snippet',
+            'q' => $videoName,
+            'maxResults' => 1,
+            'type' => 'video',
+            'key' => $apiKey
+        ]);
+
+        if ($response->successful()) {
+            $items = $response->json('items');
+            if (!empty($items)) {
+                $videoId = $items[0]['id']['videoId'];
+                return "https://www.youtube.com/watch?v={$videoId}";
+            }
+        }
+
+        return null;
+    }
+
+    public function setFeelingVideo($feeling)
+    {
+        //
     }
 }
