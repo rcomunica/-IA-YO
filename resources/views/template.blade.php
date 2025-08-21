@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </head>
 
-<body class="bg-[#c9abfa9c]" x-data="{nav: false}">
+<body class="bg-[#c9abfa9c]" x-data="{nav: true}">
 
 
     <nav x-show="nav === true" class="flex absolute px-12 py-5 justify-between items-center w-full">
