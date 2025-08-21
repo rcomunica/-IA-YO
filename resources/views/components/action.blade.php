@@ -1,4 +1,5 @@
-<div x-data="{ continueBtn: false }" {{$attributes->merge(['class' => 'grid grid-rows-3 grid-cols-2 items-center
+<div x-data="{ continueBtn: false }" {{$attributes->merge(['class' => 'grid grid-rows-3 grid-cols-2
+    items-center
     justify-items-center w-full
     min-h-screen p-5'])}}>
     <div class="flex flex-col items-center justify-center gap-5 w-full col-start-1 row-start-1 col-span-4">
@@ -25,7 +26,7 @@
 
         @case('youtube')
         <div class="w-3/5">
-            <x-youtube-embed link="https://www.youtube.com/embed/qHDJSRlNhVs?si=IbXLFiCW3NEFm6ym" />
+            <x-youtube-embed :videoId="$this->videoId" />
         </div>
         @break
 

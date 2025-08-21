@@ -40,12 +40,15 @@ class RegisterResource extends Resource
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('email')
+                    ->searchable(),
                 TextColumn::make('emotion')
                     ->searchable(),
                 TextColumn::make('profesional.name')
                     ->searchable(),
-                TextColumn::make('results.average_score')
+                TextColumn::make('song')
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

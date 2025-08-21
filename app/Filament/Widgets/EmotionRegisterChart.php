@@ -58,4 +58,9 @@ class EmotionRegisterChart extends ChartWidget
     {
         return 'bar';
     }
+
+    public function getColumnSpan(): int|string|array
+    {
+        return 6; // ocupa 6 de las 12 columnas
+    }
 }

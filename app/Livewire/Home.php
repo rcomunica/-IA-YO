@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Enums\RegisterEmotion;
 use App\Models\Register;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use OpenAI;
 
@@ -14,6 +15,10 @@ class Home extends Component
     public $name, $prompt;
 
     public $message, $songName, $emotion;
+
+    public $videoId, $linkSong;
+
+    public $iaCalification, $musicCalification, $profesionalCalification;
 
     public function render()
     {
@@ -62,8 +67,8 @@ class Home extends Component
             'temperature' => 0.7,
             'messages' => [
                 [
-                    'role' => 'developer',
-                    'content' => 'El usuario se llama' . $this->name . ' , lo saludarás, vas a decirle su sentimiento, razones por las cuales se siente así y que consejo le das, recuerda dar una respuesta muy completa, dile como puede afrontar su sentimiento sea bueno o malo',
+                    'role' => 'system',
+                    'content' => 'El usuario se llama' . $this->name . ' , lo saludarás, vas a decirle su sentimiento, razones por las cuales se siente así y que consejo le das, recuerda dar una respuesta muy completa, dile como puede afrontar su sentimiento sea bueno o malo, recuerda devolver el nombre de la cancion NO EL LINK',
                 ],
                 [
                     'role'      => 'user',
@@ -88,6 +93,9 @@ class Home extends Component
         $this->songName = $arguments['cancion'];
         $this->emotion = $arguments['sentimiento'];
 
+        Log::info(implode(", ", $arguments));
+        Log::info("Link song: $this->linkSong");
+
 
         // Registro DB
         $register = new Register();
@@ -102,8 +110,7 @@ class Home extends Component
 
 
         // Mostrar resultados
-
-
+        $this->dispatch('register-created', $this->videoId);
     }
 
     public function setAnswerIA($text)
@@ -127,8 +134,8 @@ class Home extends Component
         if ($response->successful()) {
             $items = $response->json('items');
             if (!empty($items)) {
-                $videoId = $items[0]['id']['videoId'];
-                return "https://www.youtube.com/watch?v={$videoId}";
+                $this->videoId = $items[0]['id']['videoId'];
+                return $this->linkSong = "https://www.youtube.com/watch?v={$this->videoId}";
             }
         }
 

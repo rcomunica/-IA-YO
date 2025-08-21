@@ -15,7 +15,7 @@
     <div x-data="{ nameInput: '' }" class=" col-span-2 row-span-2 col-start-1 row-start-2 w-full h-full flex flex-col gap-5 justify-center
         items-center">
         <div class="w-3/5">
-            <div class="relative bg-white w-full rounded-2xl flex justify-center items-center flex-col">
+            <div class="relative w-full rounded-2xl flex justify-center items-center flex-col">
                 <input type="text" id="nameInput" x-model="nameInput" class=" block w-2/5
                 p-4
                 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50

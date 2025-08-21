@@ -5,7 +5,9 @@
         </h1>
     </div>
     <div class="col-start-2 row-start-3">
-        <x-button>Entrar</x-button>
+        <button class='flex justify-center items-center text-center w-100 h-15 text-white
+            bg-[#6157FA]
+            rounded-xl cursor-pointer font-semibold hover:bg-[#9658FA]' id="startForo">⭐ Empecemos ⭐</button>
     </div>
     <div class="col-start-2 row-start-4">
         <p class="text-center text-[#9658FA]">
@@ -15,4 +17,28 @@
             privacidad y <b>NO</b> almacenaremos ninguna informacion personal suministrada
         </p>
     </div>
+
+    <script>
+        var btn = document.getElementById('startForo');
+        btn.addEventListener("click", () => {
+            particlesJS.load('particles-js', '/particlesjs-config.json', function() {
+                console.log('Particles.js cargado');
+            });
+
+            let audio = new Audio('{{asset('0818.mp3')}}')
+            audio.play();
+
+            document.documentElement.requestFullscreen();
+
+            setTimeout(() => {
+                let comp = Alpine.$data(document.getElementById('home'));
+                comp.paso = 1;
+            }, 1000);
+
+        })
+
+
+
+    </script>
+
 </div>

@@ -6,64 +6,29 @@
             {!! $title !!}
         </h1>
     </div>
-    <div class="col-start-2 row-start-3 flex flex-row gap-5  p-5 rounded-xl">
-        <div class="">
-            <div id="tooltip-defno" role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                Empeoré
-                <div class="tooltip-arrow" data-popper-arrow></div>
+    <div class="col-start-2 row-start-3 flex flex-row gap-5 p-5 rounded-xl" x-data="{ califications: [
+        {image: 'definitivamenteno', value: 1, name: 'Definitivamente NO me gustó'},
+        {image: 'no', value: 2, name: 'NO me gustó'},
+        {image: 'meh', value: 3, name: 'Me dió igual'},
+        {image: 'agradable', value: 4, name: 'Me siento mejor'},
+        {image: 'feliz', value: 5, name: 'Definitivamente me siento mejor'}],
+        selected: @entangle(''.$type.'Calification') }">
+        <template x-for="calification in califications">
+            <div class="">
+                <div :id="`tooltip-${calification.image}`" role="tooltip" x-text="calification.name" class=" absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white
+                    transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
+                </div>
+                <img :src=" `{{ asset('images/emotions') }}/${calification.image}.svg`"
+                    :data-tooltip-target="`tooltip-${calification.image}`" :class="selected === calification.value
+                    ? 'border-blue-500 bg-blue-100 scale-125'
+                    : 'border-gray-300 bg-white scale-100'"
+                    @click="$wire.set('{{$type}}Calification', calification.value); selected = calification.value;"
+                    class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
+                    width="100" alt="">
             </div>
-
-            <img src="{{asset('images/emotions/definitivamenteno.svg')}}" data-tooltip-target="tooltip-defno"
-                class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
-                width="100" alt="">
-        </div>
-        <div class="">
-            <div id="tooltip-no" role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                Me siento un poco mal
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <img src="{{asset('images/emotions/no.svg')}}" data-tooltip-target="tooltip-no"
-                class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
-                width="100" alt="">
-        </div>
-        <div class="">
-
-            <div id="tooltip-meh" role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                Me dió igual
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-
-            <img src="{{asset('images/emotions/meh.svg')}}" data-tooltip-target="tooltip-meh"
-                class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
-                width="100" alt="">
-        </div>
-        <div class="">
-
-            <div id="tooltip-bien" role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                Me siento un poco mejor
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-
-            <img src="{{asset('images/emotions/agradable.svg')}}" data-tooltip-target="tooltip-bien"
-                class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
-                width="100" alt="">
-        </div>
-        <div class="">
-            <div id="tooltip-muybien" role="tooltip"
-                class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
-                Me ayudó mucho
-                <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-
-            <img src="{{asset('images/emotions/feliz.svg')}}" data-tooltip-target="tooltip-muybien"
-                class="scale-100 hover:scale-125 duration-300 ease-out cursor-pointer rounded-full border-2 bg-white"
-                width="100" alt="">
-        </div>
+        </template>
     </div>
+
     <div class="row-start-4 col-start-1 col-span-3">
         <x-button>Siguiente</x-button>
     </div>

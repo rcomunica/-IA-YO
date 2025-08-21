@@ -3,6 +3,8 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Widgets\EmotionRegisterChart;
+use App\Filament\Widgets\LatestRegisters;
+use App\Filament\Widgets\StatsOverview;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -13,6 +15,7 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Widgets;
+use Filament\Widgets\Widget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
@@ -40,17 +43,17 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogoHeight('4rem')
             ->favicon(asset('images/500x500/nobg/1.png'))
             ->font('Montserrat', provider: GoogleFontProvider::class)
-            ->darkMode(false)
+            ->darkMode(true)
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Pages\Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                Widgets\AccountWidget::class,
-                Widgets\StatsOverviewWidget::class,
+                StatsOverview::class,
                 EmotionRegisterChart::class,
+                EmotionRegisterChart::class,
+                LatestRegisters::class,
             ])
             ->middleware([
                 EncryptCookies::class,
@@ -68,11 +71,8 @@ class AdminPanelProvider extends PanelProvider
             ]);
     }
 
-    public function getColumns(): int | string | array
+    public function getColumns(): int | array
     {
-        return [
-            'md' => 1,
-            'xl' => 1,
-        ];
+        return 12; // Definimos un grid de 12 columnas
     }
 }

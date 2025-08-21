@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </head>
 
@@ -37,8 +38,9 @@
         </div>
     </nav>
     <div class="text-gray-900 antialiased ">
-        {{ $slot }}
+        {{-- {{ $slot }} --}}
     </div>
+
 </body>
 
 </html>
