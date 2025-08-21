@@ -33,13 +33,19 @@
                     events: {
                         'onReady': (event) => {
                             playerReady = true;
+                            window.musicForum.pause();
                             console.log("YouTube player listo 🎬");
                         },
                         'onStateChange': (event) => {
+                            if (event.data === YT.PlayerState.PLAYING) {
+                                window.musicForum.pause();
+                            }
                             if (event.data === YT.PlayerState.ENDED) {
                                 console.log("Video terminado ✅");
                                 let comp = Alpine.$data(document.getElementById('youtube-link'));
                                 comp.continueBtn = true;
+                                window.musicForum.play();
+
                             }
                         }
                     }

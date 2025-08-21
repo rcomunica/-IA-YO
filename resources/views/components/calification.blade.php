@@ -6,6 +6,7 @@
             {!! $title !!}
         </h1>
     </div>
+    @if (!isset($input))
     <div class="col-start-2 row-start-3 flex flex-row gap-5 p-5 rounded-xl" x-data="{ califications: [
         {image: 'definitivamenteno', value: 1, name: 'Definitivamente NO me gustó'},
         {image: 'no', value: 2, name: 'NO me gustó'},
@@ -15,11 +16,11 @@
         selected: @entangle(''.$type.'Calification') }">
         <template x-for="calification in califications">
             <div class="">
-                <div :id="`tooltip-${calification.image}`" role="tooltip" x-text="calification.name" class=" absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white
+                <div :id="`tooltip-${calification.image}-{{$type}}`" role="tooltip" x-text="calification.name" class=" absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white
                     transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip">
                 </div>
                 <img :src=" `{{ asset('images/emotions') }}/${calification.image}.svg`"
-                    :data-tooltip-target="`tooltip-${calification.image}`" :class="selected === calification.value
+                    :data-tooltip-target="`tooltip-${calification.image}-{{$type}}`" :class="selected === calification.value
                     ? 'border-blue-500 bg-blue-100 scale-125'
                     : 'border-gray-300 bg-white scale-100'"
                     @click="$wire.set('{{$type}}Calification', calification.value); selected = calification.value;"
@@ -28,8 +29,23 @@
             </div>
         </template>
     </div>
+    @elseif ($input === 'chat')
+    <div class="col-start-2 row-start-3 flex flex-row gap-5 p-5 rounded-xl w-full">
+        <textarea id="prompt-ia"
+            class="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+            wire:model.live='textCalification'
+            placeholder='Estuvo entretenida la actividad ya que me ayudo a sentirme mucho mejor conmigo mismo'
+            rows="4"></textarea>
+    </div>
+    @endif
+
 
     <div class="row-start-4 col-start-1 col-span-3">
+        @if (!isset($last) || $last === false)
         <x-button>Siguiente</x-button>
+        @elseif ($last === true)
+        <x-button @click="$wire.finishForum(); paso++; nav = false">Siguiente</x-button>
+
+        @endif
     </div>
 </div>

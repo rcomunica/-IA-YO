@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->enum('emotion', [
                 'alegria',
                 'tristeza',
@@ -28,13 +28,7 @@ return new class extends Migration
                 'irritacion',
             ]);
             $table->string("song");
-            $table->unsignedBigInteger('profesional_id');
             $table->timestamps();
-        });
-
-
-        Schema::table('registers', function (Blueprint $table) {
-            $table->foreign('profesional_id')->on('profesionals')->references('id')->onDelete('cascade');
         });
     }
 

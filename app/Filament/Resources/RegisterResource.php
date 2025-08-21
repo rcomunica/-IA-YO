@@ -44,8 +44,6 @@ class RegisterResource extends Resource
                     ->searchable(),
                 TextColumn::make('emotion')
                     ->searchable(),
-                TextColumn::make('profesional.name')
-                    ->searchable(),
                 TextColumn::make('song')
             ])
             ->defaultSort('created_at', 'desc')

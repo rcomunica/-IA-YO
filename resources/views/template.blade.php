@@ -19,12 +19,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @filamentStyles
+    @filamentScripts
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </head>
 
-<body class="bg-[#c9abfa9c]">
-    <nav class="flex absolute px-12 py-5 justify-between items-center w-full">
+<body class="bg-[#c9abfa9c]" x-data="{nav: false}">
+
+
+    <nav x-show="nav === true" class="flex absolute px-12 py-5 justify-between items-center w-full">
         <div class="">
             <img src="{{asset('images/500x500/nobg/1.png')}}" width="200" alt="logo_proyecto">
         </div>
@@ -38,7 +43,7 @@
         </div>
     </nav>
     <div class="text-gray-900 antialiased ">
-        {{-- {{ $slot }} --}}
+        {{ $slot }}
     </div>
 
 </body>

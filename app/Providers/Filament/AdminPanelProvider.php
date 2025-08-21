@@ -3,7 +3,9 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Widgets\EmotionRegisterChart;
+use App\Filament\Widgets\EmotionsPorcentPie;
 use App\Filament\Widgets\LatestRegisters;
+use App\Filament\Widgets\ResultsAreaChart;
 use App\Filament\Widgets\StatsOverview;
 use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
@@ -44,6 +46,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('images/500x500/nobg/1.png'))
             ->font('Montserrat', provider: GoogleFontProvider::class)
             ->darkMode(true)
+            ->sidebarFullyCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -52,7 +55,8 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 StatsOverview::class,
                 EmotionRegisterChart::class,
-                EmotionRegisterChart::class,
+                EmotionsPorcentPie::class,
+                ResultsAreaChart::class,
                 LatestRegisters::class,
             ])
             ->middleware([

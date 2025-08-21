@@ -18,15 +18,17 @@ class StatsOverview extends BaseWidget
             ->distinct('id')
             ->count('id');
 
+        $lastRegister = Register::latest()->first();
+
+
 
         return [
             Stat::make('Registros unicos', Register::count())
                 ->description("+{$nuevos} increase")
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
-                ->chart([7, 2, 10, 3, 15, 4, 17])
                 ->color('success'),
             Stat::make('Emocion frecuente', Register::mostCommonValue()->emotion),
-            Stat::make('Ultima emocion registrada', Register::mostCommonValue()->emotion),
+            Stat::make('Ultima emocion registrada', $lastRegister->emotion),
         ];
     }
 

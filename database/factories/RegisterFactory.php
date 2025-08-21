@@ -26,7 +26,6 @@ class RegisterFactory extends Factory
             'email' => fake()->email(),
             'emotion' => fake()->randomElement(RegisterEmotion::cases()),
             'song' => fake()->url(),
-            'profesional_id' => 1,
         ];
     }
 }

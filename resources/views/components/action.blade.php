@@ -26,12 +26,12 @@
 
         @case('youtube')
         <div class="w-3/5">
-            <x-youtube-embed :videoId="$this->videoId" />
+            <x-youtube-embed />
         </div>
         @break
 
         @case('video')
-        <x-video source="fondo" />
+        <x-video />
         @break
 
         @default

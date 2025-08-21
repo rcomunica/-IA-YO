@@ -17,6 +17,8 @@ return new class extends Migration
             $table->integer("ia_score");
             $table->integer("music_score");
             $table->integer("profesional_score");
+            $table->integer("activity_score");
+            $table->string("text_calification")->nullable();
             $table->timestamps();
 
             $table->foreign('register_id')->on('registers')->references('id')->onDelete('cascade');

@@ -16,7 +16,7 @@
         items-center">
         <div class="w-3/5">
             <div class="relative w-full rounded-2xl flex justify-center items-center flex-col">
-                <input type="text" id="nameInput" x-model="nameInput" class=" block w-2/5
+                <input type="text" id="nameInput" x-model="nameInput" class="block w-2/5
                 p-4
                 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50
                 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600

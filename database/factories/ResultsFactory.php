@@ -25,6 +25,7 @@ class ResultsFactory extends Factory
             'ia_score' => fake()->numberBetween(0, 5),
             'music_score' => fake()->numberBetween(0, 5),
             'profesional_score' => fake()->numberBetween(0, 5),
+            'activity_score' => fake()->numberBetween(0, 5),
         ];
     }
 }

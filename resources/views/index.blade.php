@@ -1,4 +1,4 @@
-<div x-data="{ paso: 0, transicion: {
+<div x-data="{ paso: 13, transicion: {
     'x-transition:enter': 'transition transform ease-out duration-500',
     'x-transition:enter-start': 'translate-x-full opacity-0',
     'x-transition:enter-end': 'translate-x-0 opacity-100',
@@ -7,12 +7,16 @@
     'x-transition:leave-end': '-translate-x-full opacity-0'
     }
     }" id="home">
+
     <div id="particles-js" class="absolute top-0 left-0 w-full h-full -z-10"></div>
+
     @env('local')
     <span>vista: <strong x-text="paso"></strong></span>
     <span>IA CALIFICATION: <strong>{{ $iaCalification ?? 0 }}</strong></span>
     <span>MUSIC CALIFICATION: <strong>{{ $musicCalification ?? 0 }}</strong></span>
     <span>PROFESIONAL CALIFICATION: <strong>{{ $profesionalCalification ?? 0 }}</strong></span>
+    <span>ACTIVITY CALIFICATION: <strong>{{ $activityCalification ?? 0 }}</strong></span>
+    <span>EMOTION: <strong>{{ $emotion ?? '' }}</strong></span>
     @endenv
 
     {{-- FALTA CREAR LOAD--}}
@@ -26,27 +30,33 @@
          explica como ha sido tu día, como va el foro, etc, etc, etc." />
 
 
-    <template x-if="paso === 4" x-bind="transicion">
-        <x-calification title="¿Cómo te sientes frente a la respuesta de la IA?" type="ia" />
-    </template>
+    <x-calification title="¿Cómo te sientes frente a la respuesta de la IA?" type="ia" x-show="paso === 4"
+        x-bind="transicion" />
 
     <x-steeper x-show="paso === 5" title="Escuchemos algo de música" x-bind="transicion" />
 
     <x-action id="youtube-link" x-show="paso === 6" x-bind="transicion" x-effect="if (paso === 6) initPlayer()"
-        idSong="{{$videoId}}" title="Reproduce esto y escucha" type="youtube"
-        description="Según las recomendaciones y nuestro análisis..." />
+        title="Reproduce esto y escucha" type="youtube" description="Según las recomendaciones y nuestro análisis..." />
 
 
-    <template x-if="paso === 7" x-bind="transicion">
-        <x-calification title="¿Cómo te sientes frente a la respuesta de la música?" type="music" />
-    </template>
+    <x-calification title="¿Cómo te sientes frente a la respuesta de la música?" type="music" x-show="paso === 7"
+        x-bind="transicion" />
+
     <x-steeper x-show="paso === 8" x-bind="transicion" title="Un profesional quiere dejarte un mensaje" />
 
-    <x-action title="Escucha y siéntete mejor" x-bind="transicion" x-show="paso === 9"
-        description="Abre tu corazón y escucha..." type="video" />
+    <x-action id="video-final" x-bind="transicion" x-show="paso === 9" x-effect="if (paso === 9) initVideo()"
+        title="Escucha y siéntete mejor" description="Abre tu corazón y escucha..." type="video" />
 
-    <template x-if="paso === 10" x-bind="transicion">
-        <x-calification title="Consideras que la profesional logró ayudarte?" type="profesional" />
-    </template>
+    <x-calification title="Consideras que la profesional logró ayudarte?" x-show="paso === 10" x-bind="transicion"
+        type="profesional" />
+
+
+    <x-calification title="¿Como te sentiste durante la actividad de -IA+Yo en el foro oeista 2025?"
+        x-show="paso === 11" x-bind="transicion" type="activity" />
+
+    <x-calification title="Que comentarios positivos o negativos tienes durante esta actividad" x-show="paso === 12"
+        x-bind="transicion" type="activity" input="chat" :last="true" />
+
+    <x-final x-show="paso === 13" />
 
 </div>

@@ -25,8 +25,6 @@ class LatestRegisters extends BaseWidget
                     ->searchable(),
                 TextColumn::make('emotion')
                     ->searchable(),
-                TextColumn::make('profesional.name')
-                    ->searchable(),
                 TextColumn::make('song')
             ]);
     }

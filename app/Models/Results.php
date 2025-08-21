@@ -24,4 +24,40 @@ class Results extends Model
     {
         return round(($this->ia_score + $this->music_score + $this->profesional_score) / 3, 0);
     }
+
+    public static function getBestScore($a, $b, $c)
+    {
+        $numeros = [
+            'IA' => $a,
+            'Musica' => $b,
+            'Profesional' => $c,
+        ];
+
+
+        $mayor = max($numeros);   // obtiene el valor mayor
+        $posicion = array_search($mayor, $numeros); // obtiene la "clave" del mayor
+
+        return [
+            'mayor' => $mayor,
+            'posicion' => $posicion
+        ];
+    }
+
+    public static function getPoorScore($a, $b, $c)
+    {
+        $numeros = [
+            'IA' => $a,
+            'Musica' => $b,
+            'Profesional' => $c,
+        ];
+
+
+        $mayor = min($numeros);   // obtiene el valor menor
+        $posicion = array_search($mayor, $numeros); // obtiene la "clave" del mayor
+
+        return [
+            'mayor' => $mayor,
+            'posicion' => $posicion
+        ];
+    }
 }

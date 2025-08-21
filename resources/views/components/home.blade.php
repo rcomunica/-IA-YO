@@ -25,9 +25,15 @@
                 console.log('Particles.js cargado');
             });
 
-            let audio = new Audio('{{asset('0818.mp3')}}')
-            audio.play();
+            if (!window.musicForum) {
+                window.musicForum = new Audio('{{ asset('0818.mp3') }}');
+                window.musicForum.volume = 0.2;
+            }
 
+            // Verificar si ya está sonando antes de darle play
+            if (window.musicForum.paused || window.musicForum.ended) {
+                window.musicForum.play();
+            }
             document.documentElement.requestFullscreen();
 
             setTimeout(() => {
