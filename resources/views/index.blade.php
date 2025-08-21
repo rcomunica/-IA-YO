@@ -1,4 +1,4 @@
-<div x-data="{ paso: 13, transicion: {
+<div x-data="{ paso: 0, transicion: {
     'x-transition:enter': 'transition transform ease-out duration-500',
     'x-transition:enter-start': 'translate-x-full opacity-0',
     'x-transition:enter-end': 'translate-x-0 opacity-100',
