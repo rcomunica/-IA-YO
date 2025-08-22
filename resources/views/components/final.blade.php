@@ -49,12 +49,9 @@
             <div class="text-right w-4/5 flex gap-5 flex-col items-end">
                 <h3 class="font-semibold mb-5">¿Quieres recibir este informe más detallado a tu correo?</h3>
                 <div class="w-full flex items-end flex-col">
-                    <label class="text-sm" for="emailInput">Ingresa tu correo</label>
-                    <input id="emailInput" name="emailInput" wire:model.live='email' class="block p-4 w-4/5
-                text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50
-                focus:ring-blue-500 focus:border-blue-500" type="email" placeholder="pepito@email.com">
+                    <label class="text-sm" for="emailInput">Pronto...</label>
                 </div>
-                <button wire:click='generarPdf' class="flex justify-center items-center text-center w-3/5 py-5
+                <button class="flex justify-center items-center text-center w-3/5 py-5
                     text-white
                     bg-[#6157FA]
                     rounded-xl cursor-pointer font-semibold hover:bg-[#9658FA]">Enviar</button>
