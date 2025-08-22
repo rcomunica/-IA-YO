@@ -51,6 +51,9 @@ class Results extends Model
             'Profesional' => $c,
         ];
 
+        // ⚡ eliminamos el mejor antes de buscar el menor
+        $best = self::getBestScore($a, $b, $c);
+        unset($numeros[$best['posicion']]);
 
         $mayor = min($numeros);   // obtiene el valor menor
         $posicion = array_search($mayor, $numeros); // obtiene la "clave" del mayor
