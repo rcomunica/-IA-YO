@@ -47,14 +47,7 @@
         </div>
         <div class="col-start-3 row-start-1 flex justify-end">
             <div class="text-right w-4/5 flex gap-5 flex-col items-end">
-                <h3 class="font-semibold mb-5">¿Quieres recibir este informe más detallado a tu correo?</h3>
-                <div class="w-full flex items-end flex-col">
-                    <label class="text-sm" for="emailInput">Pronto...</label>
-                </div>
-                <button class="flex justify-center items-center text-center w-3/5 py-5
-                    text-white
-                    bg-[#6157FA]
-                    rounded-xl cursor-pointer font-semibold hover:bg-[#9658FA]">Enviar</button>
+                <h3 class="font-semibold mb-5">Felicidades, has terminado el evento</h3>
             </div>
         </div>
     </div>
