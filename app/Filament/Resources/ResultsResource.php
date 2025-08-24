@@ -36,7 +36,11 @@ class ResultsResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('ia_score'),
-                TextColumn::make('register.name')
+                TextColumn::make('music_score'),
+                TextColumn::make('profesional_score'),
+                TextColumn::make('activity_score'),
+                TextColumn::make('text_calification'),
+                TextColumn::make('register.name'),
             ])
             ->filters([
                 //
